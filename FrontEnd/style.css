@@ -1,6 +1,7 @@
-/*Author: Kyle Angeles*/
-/*File: style.css*/
-/*Description: This is the CSS file for the AutoVerse Music Player*/
+/* Author: Kyle Angeles */
+/* File: style.css */
+/* Description: This is the CSS file for the AutoVerse Music Player */
+
 * {
     margin: 0;
     padding: 0;
@@ -94,6 +95,7 @@ nav a {
     color: #666;
     font-size: 14px;
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 nav a:hover {
@@ -296,6 +298,62 @@ footer p {
     margin: 5px 0;
 }
 
+/* View Sections (SPA Pages) */
+.view {
+    padding: 40px 20px;
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* Form Styling (Register/Login) */
+.view form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.view form label {
+    font-weight: 600;
+    color: #333;
+}
+
+.view form input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.view form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.view form button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view form button:hover {
+    background-color: #388E3C;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .main-layout {
@@ -335,4 +393,9 @@ footer p {
         width: 70px;
         height: 70px;
     }
+}
+
+/*  Hidden file input styles */
+.hidden-input {
+    display: none;
 }
