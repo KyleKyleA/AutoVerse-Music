@@ -18,19 +18,21 @@
                     <div class="brand-title">AutoVerse</div>
                     <div class="search-icon"></div>
                 </div>
+        <!-- Navigation bar -->
                 <nav>
-                    <a href="#">Register</a>
-                    <a href="#">Login</a>
-                    <a href="#">DashBoard</a>
-                    <a href ="#">Contact-us</a>
-                    <a href="#">Profile</a>
-                    <a href="#">About-us</a>
+                    <a data-view="#">Register</a>
+                    <a data-view=""="#">Login</a>
+                    <a data-view=""="#">DashBoard</a>
+                    <a data-view ="#">Contact-us</a>
+                    <a data-view="#">Profile</a>
+                    <a data-view=""="#">About-us</a>
                 </nav>
             </header>
 
             
             <!-- Main layout section -->
             <!-- The side bar on the left side of the page -->
+            <section id="home-view" class="view active">
             <div class="main-layout">
                 <aside class="side-bar">
                     <button>Import Music</button>
@@ -59,10 +61,80 @@
                     <div class="queue-item">Track 2 - Artist Name</div>
                     <div class="queue-item">Track 3 - Artist Name</div>                  
                 </div>
-             </div>
         </div> <!-- End of main layout-->
     </div> <!-- End of container -->
+</section>
 
+    <!-- Nav Bar viewing -->
+    <section id="Register-view" class="view">
+        <h1>Register page</h1>
+        <form>
+            <label for="first_name">First name:</label>
+            <input type="text" id="first_name" name="first_name" placeholder="please enter first name" title="First name" required><br><br>
+
+            <label for="last_name">Last name: </label>
+            <input type="text" id="last_name" name="last_name" placeholder="please enter your last name" title="Last name" required><br><br>
+
+            <label for="email">Email: </label>
+            <input type="text" id="email" name="email" placeholder="Enter an Email" title="Email Address" required><br></br>
+
+            <label for="birthdate">Birth date: </label>
+            <input type="date" id="birth_date" name="birth_date" title="Birth date" required><br><br>
+
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" placeholder="create a password" title="password" required><br><br>
+        </form>
+    </section>
+
+    <!-- Login view -->
+    <section id="Login-view" class="view">
+        <h1>Login Page</h1>
+        <form>
+            <label for="email">Email: </label>
+            <input type="text" id="email" name="email" placeholder="Enter your email" title="Email Address" required><br></br>
+
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" title="password" required><br><br>
+        </form>
+    </section>
+
+    <!-- DashBoard view -->
+    <section id="DashBoard-view" class="view">
+        <h1>DashBoard Page</h1>
+        <p>Welcome to your dashboard!</p>
+        <p>Here you can view your monthly statistics for artists, music, and playlists and even more</p>
+    </section>
+
+    <!-- Contact-us view -->
+    <section id="Contact-us-view" class="view">
+        <h1>Contact Us Page</h1>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" title="Name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email" title="Email Address" required><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" placeholder="Enter your message here" title="Message" required></textarea><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <!-- Profile view -->
+    <section id="Profile-view" class="view">
+        <h1>Profile Page</h1>
+        <p>View and edit your profile information here.</p>
+    </section>
+
+    <!-- About-us view -->
+    <section id="About-us-view" class="view">
+        <h1>About Us Page</h1>
+        <p>AutoVerse is a music player application designed to provide users with an exceptional music listening experience.</p>
+        <p>Our mission is to bring music lovers together and offer a platform that is both user-friendly and feature-rich.</p>
+    </section>
+</div>
   
 
     <!-- Footer Section -->
@@ -70,6 +142,7 @@
         <p>Made by Kyle Angeles </p>
         <p>&copy; 2025 AutoVerse. All rights reserved</p>
         <a href="privacy-policy.html">Privacy Policy</a>   
+        <a href="aup.html">Acceptable Use Policy</a>
      </footer>
 
     <!-- Javascript tags -->
