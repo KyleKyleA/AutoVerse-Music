@@ -181,13 +181,13 @@ nav a:hover {
     transform: scale(1.1);
 }
 
-.previous, .next {
+.previous, .nexttrack {
     width: 50px;
     height: 50px;
     position: relative;
 }
 
-.previous::before, .next::before {
+.previous::before, .nexttrack::before {
     content: '';
     width: 0;
     height: 0;
@@ -208,16 +208,16 @@ nav a:hover {
     border-color: transparent #4CAF50 transparent transparent;
 }
 
-.next::before {
+.nexttrack::before {
     border-width: 15px 0 15px 20px;
     border-color: transparent transparent transparent #666;
 }
 
-.next:hover::before {
+.nexttrack:hover::before {
     border-color: transparent transparent transparent #4CAF50;
 }
 
-.play-pause {
+.playpause {
     width: 80px;
     height: 80px;
     border: 3px solid #666;
@@ -227,11 +227,11 @@ nav a:hover {
     transition: border-color 0.3s;
 }
 
-.play-pause:hover {
+.playpause:hover {
     border-color: #4CAF50;
 }
 
-.play-pause::before {
+.playpause::before {
     content: '';
     width: 0;
     height: 0;
@@ -245,7 +245,7 @@ nav a:hover {
     transition: border-color 0.3s;
 }
 
-.play-pause:hover::before {
+.playpause:hover::before {
     border-color: transparent transparent transparent #4CAF50;
 }
 
@@ -389,7 +389,7 @@ footer p {
         width: 280px;
     }
 
-    .play-pause {
+    .playpause {
         width: 70px;
         height: 70px;
     }
