@@ -12,9 +12,16 @@ document.querySelectorAll("a[data-view").foreach(link => {
 
 
         //Hide views
-        document.querySelectorAll(".view").forEach
+        document.querySelectorAll(".view").forEach(link => {
+           view.style.display = "none";
+            
+            });
+
+        //Show views
+        document.getElementById(target).style.display = "block";
+        })
     })
-})
+
 
 // Function to initialize the music player
 function initializePlayer() {
@@ -40,7 +47,7 @@ document.getElementById("musicFileInput").addEventListener('change', function(ev
     const files = event.target.files[0];
 
     // Placeholder for handling the imported music file
-    if (files) return;
+    if (!files) return;
     console.log("Music file imported: " + files.name);
       
 });
@@ -49,7 +56,7 @@ document.getElementById("musicFileInput").addEventListener('change', function(ev
 document.getElementById("playlistFileInput").addEventListener('change', function(event) {
     const files = event.target.files[0];
 
-    if (files) return;
+    if (!files) return;
     console.log("Playlist file imported: " + files.name);
 
     const reader = new FileReader();
@@ -66,10 +73,18 @@ document.getElementById("playlistFileInput").addEventListener('change', function
 
 // Function to handle player button clicks
 // Example: Play, Pause, Next, Previous
-function handlePlayerButtonClick(action) {
+const audioPlayer = document.getElementById("player-control");
 
+// Function to playpause the button on the UI
+function playPause () {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        console.log("playing: " ) ;// Want to add that text where it shows playing plus the Track naming
+    } else {
+        audioPlayer.paused();
+        console.log("paused");
+    }
 }
 
 // Call the initialize function when the window loads
 window.onload = initializePlayer;
-});
