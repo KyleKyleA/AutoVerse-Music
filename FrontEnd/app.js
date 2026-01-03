@@ -6,13 +6,13 @@
 console.log("AutoVerse Music Player App loaded successfully.");
 
 // VIEW SWITCHER
-document.querySelectorAll("a[data-view").foreach(link => {
+document.querySelectorAll("a[data-view]").forEach(link => {
     link.addEventListener("click", () => {
         const target = link.getAttribute("data-view");
 
 
         //Hide views
-        document.querySelectorAll(".view").forEach(link => {
+        document.querySelectorAll(".view").forEach(view => {
            view.style.display = "none";
             
             });
@@ -31,13 +31,11 @@ function initializePlayer() {
 
 }
 // Import buttons functionality
-// Example: Import Music, Import Playlist
-// In, this case we need a event listener for each button
-document.getElementById("importMusicButton").addEventListener("click", function() {
+document.getElementById("importMusicBtn").addEventListener("click", function() {
     document.getElementById("musicFileInput").click();
 })
 
-document.getElementById("importPlaylistButton").addEventListener("click", function() {
+document.getElementById("importPlaylistBtn").addEventListener("click", function() {
     document.getElementById("playlistFileInput").click();
 })
 
@@ -66,25 +64,44 @@ document.getElementById("playlistFileInput").addEventListener('change', function
         // into the music player would go here
         // when we create the database and playlist functionality
 
-}
+};
     reader.readAsText(files);
+});
+    
 
 
 
 // Function to handle player button clicks
 // Example: Play, Pause, Next, Previous
-const audioPlayer = document.getElementById("player-control");
+// Getting the ID from the html page
+const audioPlayer = document.getElementById("audioPlayer");
 
 // Function to playpause the button on the UI
 function playPause () {
     if (audioPlayer.paused) {
         audioPlayer.play();
-        console.log("playing: " ) ;// Want to add that text where it shows playing plus the Track naming
+        console.log("playing: " + audioPlayer.src) ;// Want to add that text where it shows playing plus the Track naming
     } else {
-        audioPlayer.paused();
+        audioPlayer.pause();
         console.log("paused");
     }
 }
 
+function nextTrack () {
+    audioPlayer.src = 'nexttrack.mp3';
+    audioPlayer.play();
+    console.log("Next track loaded and playing:  " + audioPlayer.src); // Adding something for this string 
+}
+
+function previousTrack () {
+    audioPlayer.src = 'previousTrack.mp3';
+    audioPlayer.play();
+    console.log("Previous track loaded is now playing: " + audioPlayer.src );
+}
+
+//Button Listeners
+document.querySelector(".playpause").addEventListener("click", playPause);
+document.querySelector(".nexttrack").addEventListener("click", nextTrack);
+document.querySelector(".previous").addEventListener("click", previousTrack);
 // Call the initialize function when the window loads
 window.onload = initializePlayer;

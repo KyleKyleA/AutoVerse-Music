@@ -29,12 +29,13 @@
 
         <!-- Navigation bar -->
         <nav>
-            <a data-view="Register-view">Register</a>
-            <a data-view="Login-view">Login</a>
-            <a data-view="DashBoard-view">Dashboard</a>
-            <a data-view="Contact-us-view">Contact-us</a>
-            <a data-view="Profile-view">Profile</a>
-            <a data-view="About-us-view">About-us</a>
+            <a href="#" data-view="home-view">Home</a>
+            <a href="#" data-view="Register-view">Register</a>
+            <a href="#" data-view="Login-view">Login</a>
+            <a href="#" data-view="DashBoard-view">Dashboard</a>
+            <a href="#" data-view="Contact-us-view">Contact-us</a>
+            <a href="#" data-view="Profile-view">Profile</a>
+            <a href="#" data-view="About-us-view">About-us</a>
         </nav>
     </header>
 
@@ -61,10 +62,11 @@
                 </div>
 
                 <div class="player-control">
-                    <div class="previoustrack"></div>
-                    <div class="playpause"></div>
-                    <div class="nexttrack"></div>
+                    <div class="control-button previous"></div>
+                    <div class="control-button playpause"></div>
+                    <div class="control-button nexttrack"></div>
                 </div>
+                <audio id="audioPlayer"></audio>
             </div>
 
             <!-- Queue Section -->
