@@ -103,5 +103,6 @@ function previousTrack () {
 document.querySelector(".playpause").addEventListener("click", playPause);
 document.querySelector(".nexttrack").addEventListener("click", nextTrack);
 document.querySelector(".previous").addEventListener("click", previousTrack);
+
 // Call the initialize function when the window loads
 window.onload = initializePlayer;

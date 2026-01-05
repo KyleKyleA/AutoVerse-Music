@@ -34,6 +34,8 @@ document.getElementById("searchInput").addEventListener("input", function(event)
         "Fourth Melody",
         "Fifth Harmony"
     ];
+    // Filter and display results 
+    // when the user imports a search query
     const filteredResults = sampleData.filter(item => item.toLowerCase().includes(query));
     filteredResults.forEach(result => {
         const resultItem = document.createElement("div");

@@ -14,6 +14,9 @@
 
     <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Additional styles or scripts -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -95,7 +98,6 @@
 
     <!-- REGISTER VIEW -->
     <section id="Register-view" class="view">
-        <h1>Register Page</h1>
         <form>
             <label for="first_name">First name:</label>
             <input type="text" id="first_name" name="first_name" placeholder="Please enter first name" title="First name" required><br>
@@ -118,7 +120,6 @@
 
     <!-- LOGIN VIEW -->
     <section id="Login-view" class="view">
-        <h1>Login Page</h1>
         <form>
             <label for="login_email">Email:</label>
             <input type="text" id="login_email" name="email" placeholder="Enter your email" title="Email Address" required><br>
@@ -132,10 +133,28 @@
 
     <!-- DASHBOARD VIEW -->
     <section id="DashBoard-view" class="view">
-        <h1>Dashboard Page</h1>
-        <p>Welcome to your dashboard!</p>
+    <div class ="dashboard-container">
+    <header class="dashboard-view"></header>
+        <p>Welcome to your dashboard!</p> <br>
         <p>Here you can view your monthly statistics for artists, music, and playlists.</p>
-    </section>
+    </header>
+
+        <section class="statistics">
+            <div class="statistics-card">
+                <h2>Artists</h2>
+                <p>Number of Artists: </p>
+            </div>
+            <div class="statistics-card">
+                <h2>Music</h2>
+                <p>Total Music Played: </p>
+            </div>
+            <div class="statistics-card">
+                <h2>Playlists</h2>
+                <p>Total Playlists Created: </p>
+            </div>
+        </section>
+    </div>
+</section>
 
     <!-- CONTACT VIEW -->
     <section id="Contact-us-view" class="view">
@@ -162,9 +181,65 @@
 
     <!-- ABOUT VIEW -->
     <section id="About-us-view" class="view">
-        <h1>About Us Page</h1>
-        <p>AutoVerse is a music player application designed to provide users with an exceptional music listening experience.</p>
+    <div class="About-us-container">
+        <header class="about-us-header">
+            <h2>About AutoVerse</h2>
+            <p>AutoVerse is a music player application designed to provide users with an exceptional music listening experience.</p>
         <p>Our mission is to bring music lovers together and offer a platform that is both user-friendly and feature-rich.</p>
+        </header>
+
+        <section class="information-app">
+            <section class="summary">
+                <div class="summary-card">
+                    <h3>Our goal</h3>
+                    <p> Our goal for this small size project is to create a user-friendly music app for all people whom love to listen to music. This application alows
+                    users to easily browse, import, and play their favorite music, while focusing on the simplicity of it condenses it compared to other 
+                main stream music apps while still adding on a smooth user experience for people that like the minimalistic look. </p>
+                </div>
+            </section>
+            <section class="features">
+                <div class="features-card">
+                    <h3>Features</h3>
+                    <uL>
+                        <li>Import music and playlists</li>
+                        <li>Play, pause, and skip next track</li>
+                        <li>View and look at your music stats</li>
+                        <li>Search for music and playlists</li>
+                        <li>User profile management</li>
+                        <li>Contact support</li>
+                        <li>Responsive design for various devices</li></li>
+                    </uL>
+                    <p>Theses are just types of features for this coding protype that I've been thinking about for the last 3-4 months now but didn't have the time 
+                        due to studying and other extra curricular activities. But I hope to add more features in the future updates of this application.
+                    </p>
+                </div>
+            </section>
+            <section class="team">
+                <div class="team-card">
+                    <h3>Our Team</h3>
+                    <p> This project was created by Kyle Angeles, a second-year Computer Programming and Analysis student at Durham College with experience in web and back-end development. 
+                        I am currently working on this project independently to further develop my technical skills and apply what I have learned through past coursework and projects. And 
+                        I hope to later expand this prototype into a full fledged application in the future as I continue to learn more concepts that I haven't touched on yet.
+                    </p>
+                </div>
+            </section>
+            <section class="socials">
+                <div class="socials-card">
+                    <h3>Connect with me</h3>
+                    <p>Feel free to connect with me on my social media platforms:</p>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/kyle-angeles-b07ba7315/" target="_blank" rel="noopener noreferrer" title="Visit my LinkedIn profile"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/KyleKyleA" target="_blank" rel="noopener noreferrer" title="Visit my GitHub profile"><i class="fab fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="picture-kyle-angeles">
+                <div class="picture-card">
+                    <!-- <img src="">images/kyle-angeles.jpg" alt="Picture of Kyle Angeles"></img> -->
+                    <p>Kyle Angeles - Developer of AutoVerse Music Player Application</p>
+                </div>
+            </section>
+        </section>
     </section>
 
 </div> <!-- End container -->
