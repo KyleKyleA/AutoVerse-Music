@@ -399,3 +399,95 @@ footer p {
 .hidden-input {
     display: none;
 }
+
+/* ================================
+   SEARCH BAR + SEARCH PANEL STYLES
+   ================================ */
+
+/* Search Bar Container */
+.search-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background: none;
+    width: auto;
+    height: auto;
+    cursor: default;
+}
+
+/* Search Input */
+#searchInput {
+    border: 2px solid #a855f7; /* Purple */
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 200px;
+    transition: border-color 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: #c084fc; /* Lighter purple */
+    outline: none;
+}
+
+/* Search Button */
+#searchBtn {
+    background-color: #3b82f6; /* Blue */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#searchBtn:hover {
+    background-color: #2563eb; /* Darker blue */
+}
+
+/* Search Panel (textarea container) */
+.search-panel {
+    width: 100%;
+    padding: 16px;
+    background-color: #f3f4f6; /* Light gray */
+    border-top: 2px solid #22c55e; /* Green */
+    margin-top: 10px;
+}
+
+.search-panel.hidden {
+    display: none;
+}
+
+/* Search Textarea */
+#searchArea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 15px;
+    border: 2px solid #22c55e;
+    border-radius: 6px;
+    resize: none;
+    background-color: #ffffff;
+}
+
+/* Search Results */
+#searchResults {
+    padding: 16px;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+}
+
+#searchResults div {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 15px;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#searchResults div:hover {
+    background-color: #e0f2fe; /* Light blue */
+}

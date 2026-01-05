@@ -22,10 +22,21 @@
 
     <!-- Header Section -->
     <header>
-        <div class="brand-section">
+         <div class="brand-section">
             <div class="brand-title">AutoVerse</div>
-            <div class="search-icon"></div>
+            <div class="search">
+                <input type="text" id="searchInput" placeholder="Search..." title="Search">
+                <button id="searchBtn">🔍</button>
+            </div>
+        </div
+        <!-- Search Panel for the user where they can search up music or playlists -->
+        <div id="searchPanel" class="search-panel hidden">
+            <textarea id="searchArea" placeholder="Search your music or playlists..."></textarea>
         </div>
+
+        <div id="searchResults" class="search-results"></div>
+
+
 
         <!-- Navigation bar -->
         <nav>
@@ -168,6 +179,7 @@
 
 <!-- JavaScript -->
 <script src="app.js"></script>
+<script src="./components/search.js"></script>
 
 </body>
 </html>
