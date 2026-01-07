@@ -104,5 +104,40 @@ document.querySelector(".playpause").addEventListener("click", playPause);
 document.querySelector(".nexttrack").addEventListener("click", nextTrack);
 document.querySelector(".previous").addEventListener("click", previousTrack);
 
+// Profile View - Load User Information
+const profileView = document.getElementById("Profile-view");
+profileView.addEventListener("show", loadUserProfile);
+
+function loadUserProfile() {
+    // Placeholder for loading user profile information
+    console.log("Loading User profile...");
+    // Example of setting user information
+}
+
+// Edit Profile picture Button Functionality
+function changeProfilePicture() {
+    console.log("Change Profile Picture button clicked." );
+
+}
+
+// When the user clicks the change profile picture button
+document.getElementById("changeProfilePicBtn").addEventListener("click", () => {
+    document.getElementById("file-input").click();
+});
+
+document.getElementById("file-input").addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+     const reader = new FileReader();
+     reader.onload = function(e) {
+        document.getElementById("profilePic").src = e.target.result;
+        console.log("Profile picture updated.");
+     };
+
+        reader.readAsDataURL(file);
+});
+
+
 // Call the initialize function when the window loads
 window.onload = initializePlayer;
