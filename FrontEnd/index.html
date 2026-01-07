@@ -175,9 +175,45 @@
 
     <!-- PROFILE VIEW -->
     <section id="Profile-view" class="view">
-        <h1>Profile Page</h1>
+    <header class="profile-header">
+        <h1>Welcome to your profile!</h1>
         <p>View and edit your profile information here.</p>
+    </header>
+
+    <section class="profile-picture">
+        <div class="profile-picture-card">
+            <h3>Your profile picture</h3>
+            <img src="" alt="Profile Picture">
+            <button id="changeProfilePicBtn">Change Profile Picture</button>
+        </div>
     </section>
+
+    <section class="personal-Information">
+        <div class="personal-Information-card">
+            <h3>Profile Details</h3>
+            <p>Name: <span id="profilename"></span></p>
+            <p>Email: <span id="profileemail"></span></p>
+            <p>Phone Number: <span id="profilephone"></span></p>
+            <p>Birth Date: <span id="profilebirthdate"></span></p>
+            <p>Password: <span id="profilepassword"></span></p>
+            <p>Member Since: <span id="profilemembersince"></span></p>
+            <button id="editProfileBtn">Edit Profile</button>
+        </div>
+    </section>
+
+    <section class="settings">
+        <div class="settings-card">
+            <h3>Settings</h3>
+            <button id="theme">Change theme</button>
+            <button id="Languages">Change Language</button>
+            <button id="SaveChange">Save Changes</button>
+            <button id="deleteAccount">Delete Account</button>
+            <button id="logout">Logout</button>
+        </div>
+    </section>
+    </section>
+
+
 
     <!-- ABOUT VIEW -->
     <section id="About-us-view" class="view">
@@ -192,7 +228,7 @@
             <section class="summary">
                 <div class="summary-card">
                     <h3>Our goal</h3>
-                    <p> Our goal for this small size project is to create a user-friendly music app for all people whom love to listen to music. This application alows
+                    <p> Our goal for this small size project is to create a user-friendly music app for all people whom love to listen to music. This application allows
                     users to easily browse, import, and play their favorite music, while focusing on the simplicity of it condenses it compared to other 
                 main stream music apps while still adding on a smooth user experience for people that like the minimalistic look. </p>
                 </div>
@@ -209,7 +245,7 @@
                         <li>Contact support</li>
                         <li>Responsive design for various devices</li></li>
                     </uL>
-                    <p>Theses are just types of features for this coding protype that I've been thinking about for the last 3-4 months now but didn't have the time 
+                    <p>Theses are just types of features for this coding prototype that I've been thinking about for the last 3-4 months now but didn't have the time 
                         due to studying and other extra curricular activities. But I hope to add more features in the future updates of this application.
                     </p>
                 </div>
