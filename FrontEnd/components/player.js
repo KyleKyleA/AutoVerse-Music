@@ -4,11 +4,12 @@
 // Description: Theses javascript functions are designed for the music player controls
 // such as play feature, pause, skip features for now 
 
-
+// Creating an audio object 
 const audio = new Audio();
 let currentTrack = null;
 let isPlaying = false;
-
+let songQueue = [];
+let songQueueIndex = 0;
 
 
 // Function to load a track
@@ -21,8 +22,75 @@ export function loadTrack(songURL) {
     }
 }
 
-// Function to play or pause the current track
-export function playPause() {
+// Function to play the current track
+export function playTrack() {
     audio.play();
+}
+
+// Function to pause the current track
+export function Pause() {
+    audio.pause();
 
 };
+
+// Function to toggle play/pause
+export function togglePlayPause() {
+    if (isPlaying) {
+        pauseTrack();
+    } else {
+        playTrack();    
+    }
+}
+
+// Event listeners to update the isPlaying state
+audio.addEventListener('play', () => {
+    isPlaying = true; 
+
+    console.log("Playing track: " + currentTrack); 
+});
+
+
+audio.addEventListener('pause', () => {
+    isPlaying = false; 
+    console.log("Track paused: " + currentTrack);
+});
+
+audio.addEventListener('ended', () => {
+    isPlaying = false;
+    console.log("Track ended: " + currentTrack);
+    // Here you can add logic to automatically play the next track if desired
+});
+
+// Function to get the current playback time 
+export function getCurrentTime() {
+    return audio.currentTime;
+}
+
+// Function to set the current playback time
+export function setCurrentTime(time) {
+    audio.currentTime = time;
+
+}
+
+// Javascript function for the song queue feature
+export function addToQueue(songURL) {
+    songQueue.push(songURL);
+    console.log("Song added to queue: " + songURL);
+}
+
+// Function to play the next song in the queue
+export function playNextInQueue() {
+    if (songQueueIndex < songQueue.length) {
+        loadTrack(songQueue[songQueueIndex]);
+        playTrack();
+        songQueueIndex++;
+    }}
+
+// Function to play the previous song in the queue
+export function playPreviousInQueue() {
+    if (songQueueIndex > 1) {
+        songQueueIndex -= 2;
+        loadTrack(songQueue[songQueueIndex]);
+        playTrack();
+    }
+}
