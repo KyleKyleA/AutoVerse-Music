@@ -138,6 +138,26 @@ document.getElementById("file-input").addEventListener("change", function () {
         reader.readAsDataURL(file);
 });
 
+// send request to server to for the contact-us form 
+// submission handling when the user submits the contact form
+// we prevent the default form submission and use fetch to send the data
+// this would send the data to the server endpoint '/contact' using POST method
+// getting sent to the app.py backend.
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(this);
+    fetch('/contact', {
+        method: 'post',
+        body: formData })
+        .then(data => {
+        alert("Message sent successfully");
+             })
+        .catch(error => {
+        console.error("Error:", error);
+    });
+});
+
 
 // Call the initialize function when the window loads
 window.onload = initializePlayer;
