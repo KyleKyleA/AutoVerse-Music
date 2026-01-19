@@ -24,22 +24,19 @@ export function loadTrack(songURL) {
 
 // Function to play the current track
 export function playTrack() {
-    audio.play();
+    audio.play().catch(error => {
+        console.warn("Error playing track: " + error);
+    });
 }
 
 // Function to pause the current track
-export function Pause() {
+export function pauseTrack() {
     audio.pause();
-
-};
+}
 
 // Function to toggle play/pause
 export function togglePlayPause() {
-    if (isPlaying) {
-        pauseTrack();
-    } else {
-        playTrack();    
-    }
+    isPlaying ? pauseTrack() : playTrack();
 }
 
 // Event listeners to update the isPlaying state
@@ -59,6 +56,11 @@ audio.addEventListener('ended', () => {
     isPlaying = false;
     console.log("Track ended: " + currentTrack);
     // Here you can add logic to automatically play the next track if desired
+    if (songQueueIndex < songQueue.length - 1) {
+        songQueueIndex++;
+        loadTrack(songQueue[songQueueIndex]);
+        playTrack();
+    }
 });
 
 // Function to get the current playback time 
@@ -80,17 +82,28 @@ export function addToQueue(songURL) {
 
 // Function to play the next song in the queue
 export function playNextInQueue() {
-    if (songQueueIndex < songQueue.length) {
+    if (songQueueIndex < songQueue.length - 1) {
+        songQueueIndex++;
         loadTrack(songQueue[songQueueIndex]);
         playTrack();
-        songQueueIndex++;
-    }}
-
+    } else {
+        console.log("End of queue reached");
+    }
+}
 // Function to play the previous song in the queue
 export function playPreviousInQueue() {
-    if (songQueueIndex > 1) {
-        songQueueIndex -= 2;
+    if (songQueueIndex > 0) {
+        songQueueIndex--;
         loadTrack(songQueue[songQueueIndex]);
         playTrack();
+    } else {
+        console.log("Already at the beginning of the queue");
     }
+}
+
+// Function to clear the song queue 
+export function clearQueue() {
+    songQueue = [];
+    songQueueIndex = 0;
+    console.log("Song queue cleared");
 }
