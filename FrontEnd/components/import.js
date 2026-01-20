@@ -26,34 +26,40 @@ export function isSupportedMusicFile(file) {
 }
 
 // Function to handle music file import
-export function importMusicFile(file) {
-    // Placeholder for handling the imported music file
-    if (!file) return;
-    console.log("Music file imported: " + file.name);
-    // Additional logic to process and add the music file to the library would go here
-    const reader = new FileReader();
+export async function importMusicFile(file) {
 
-    reader.onLoad = function(event) {
-        const content = event.target.result;
-        console.log("Music file content: " + content);
+    return new Promise((resolve, reject) => {
 
-        // Additional code to parse and load the music file data into the music player would go here
-    };
-    reader.readAsArrayBuffer(file);
+        const reader = new FileReader();
 
+        reader.onload = function(event) {
+            resolve({
+                name: file.name,
+                type: file.type,
+                data: event.target.result
+            });
+        };
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(file);
+    });
 }
 
 // Function to handle playlist file import
 export function importPlaylistFile(file) {
     if (!file) return;
-    console.log("Playlist file imported:" + file.name);
-    const reader = new FileReader();
 
-    reader.onload = function(event) {
+
+    console.log("Playlist file imported:" + file.name);
+
+
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+            reader.onload = function(event) {
         const content = event.target.result;
         console.log("Playlist content: " + content);
-
+        resolve(content);
         // Additional code to parse and load the playlist data into the music player would go here
     };
     reader.readAsText(file);
+});
 }
