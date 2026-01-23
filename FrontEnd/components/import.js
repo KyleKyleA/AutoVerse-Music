@@ -15,14 +15,14 @@ export function isSupportedMusicFile(file) {
     return false;
     }
 
-    const issupported = SUPPORT_MUSIC_FORMATS.includes(file.type);
-    if (!issupported) {
+    const supported = SUPPORT_MUSIC_FORMATS.includes(file.type);
+    if (!supported) {
         console.log("Unsupported music file format: " + file.type); 
 
     } else {
         console.log("Supported music file format: " + file.type);
     }
-    return issupported;
+    return supported;
 }
 
 // Function to handle music file import
@@ -63,3 +63,18 @@ export function importPlaylistFile(file) {
     reader.readAsText(file);
 });
 }
+
+// Function to handle multiple music file imports
+export async function importMultipleMusicFiles(files) { 
+    const importFiles = [];
+
+    for (const files of files ) {
+        if (isSupportedMusicFiles(file)) {
+            const importedFile = await importMusicFile(file);
+            importFiles.push(importedFile);
+        } else {
+            console.log("Skipping unsupported file: " + file.name);
+        }
+    }
+}
+
