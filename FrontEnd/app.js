@@ -158,6 +158,26 @@ document.getElementById("contactForm").addEventListener("submit", function(event
     });
 });
 
+// Function for the fetch request
+const registerForm = document.querySelector('form');
+
+registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(registerForm);
+
+    try {
+        const response = await fetch('/backend/routes/auth.php', {
+            method: 'post',
+            body: formData
+        });
+        
+        const data = await response.json();
+        alert("Successful registration");
+    } catch (error) {
+        console.error("Error: ", error);
+    }
+});
 
 // Call the initialize function when the window loads
 window.onload = initializePlayer;

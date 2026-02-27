@@ -19,7 +19,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Your CSS -->
-    <link rel="stylesheet" href="FrontEnd/style.css">
+    <link rel="stylesheet" href="/FrontEnd/style.css">
 
     <!-- Additional styles or scripts -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
