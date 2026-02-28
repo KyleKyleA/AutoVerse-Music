@@ -68,6 +68,20 @@ include './backend/includes/header.php'; // Corrected path
         </form>
     </section>
 
+     <!-- LOGIN VIEW -->
+    <section id="Login-view" class="view">
+        <form>
+            <label for="login_email">Email:</label>
+            <input type="text" id="login_email" name="email" placeholder="Enter your email" title="Email Address" required><br>
+
+            <label for="login_password">Password:</label>
+            <input type="password" id="login_password" name="password" placeholder="Enter your password" title="Password" required><br>
+
+            <input type="submit" value="submit">
+        </form>
+    </section>
+
+
 
     <!-- DASHBOARD VIEW -->
     <section id="DashBoard-view" class="view">

@@ -179,5 +179,39 @@ registerForm.addEventListener('submit', async (e) => {
     }
 });
 
+
+// Timeout for the login
+// variables
+let pollCount = 0;
+const maxPoll = 30;
+function pollLoginStatus() {
+    if (pollCount >= maxPoll) {
+        console.log("Timed out... Please log in manually again")
+        return;
+    }
+    setTimeout(async () => {
+      try {
+        const response = await fetch('/backend/routes/check_session.php') //Api endpoint
+        const data = await response.json();
+
+
+        if (data.isLoggedIn) {
+            console.log("User is logged in AutoVerse Music");
+            document.querySelector("a[data-view='DashBoard-view']").click();
+        
+        } else {
+            pollCount++;
+            console.log(`Attempt ${pollCount}`, "User is not logged in yet, polling")
+            pollLoginStatus();
+        }
+    } catch (error) {
+        console.log("Timeout", error);
+    }
+    }, 1000);
+}
+
+
+
+
 // Call the initialize function when the window loads
 window.onload = initializePlayer;
