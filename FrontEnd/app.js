@@ -5,6 +5,72 @@
 // Log a message indicating that the app has loaded
 console.log("AutoVerse Music Player App loaded successfully.");
 
+// Music API base URL – same origin as the app
+const MUSIC_API = '/backend/routes/music_routes.php';
+
+async function musicApiGet(action, params = {}) {
+    const qs = new URLSearchParams({ action, ...params }).toString();
+    const res = await fetch(`${MUSIC_API}?${qs}`);
+    return res.json();
+}
+
+// Queue state: list of { file_url, song_title, song_artist, song_id }, current index
+let songQueue = [];
+let queueIndex = -1;
+
+function formatTime(seconds) {
+    if (!isFinite(seconds) || seconds < 0) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function loadTrackAtIndex(index) {
+    if (index < 0 || index >= songQueue.length) return;
+    queueIndex = index;
+    const song = songQueue[index];
+    if (!song || !song.file_url) return;
+    audioPlayer.src = song.file_url;
+    audioPlayer.play();
+    updatePlayPauseButton(true);
+    setQueueItemActive(index);
+}
+
+function setQueueItemActive(activeIndex) {
+    document.querySelectorAll('#queueList .queue-item').forEach((el, i) => {
+        el.classList.toggle('active', i === activeIndex);
+    });
+}
+
+async function loadSongsIntoQueue() {
+    const list = document.getElementById('queueList');
+    if (!list) return;
+    try {
+        const data = await musicApiGet('songs');
+        if (data.success && Array.isArray(data.songs)) {
+            songQueue = data.songs.filter(s => s.file_url);
+            list.innerHTML = songQueue.length
+                ? songQueue.map((s, i) => `<div class="queue-item" data-index="${i}" data-file-url="${(s.file_url || '').replace(/"/g, '&quot;')}">${(s.song_title || 'Unknown')} - ${s.song_artist || ''}</div>`).join('')
+                : '<div class="queue-item">No songs yet. Import music or add songs to the library.</div>';
+            list.querySelectorAll('.queue-item[data-file-url]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const idx = parseInt(el.getAttribute('data-index'), 10);
+                    if (!isNaN(idx)) loadTrackAtIndex(idx);
+                });
+            });
+            queueIndex = -1;
+            setQueueItemActive(-1);
+        } else {
+            list.innerHTML = '<div class="queue-item">Could not load songs.</div>';
+            songQueue = [];
+        }
+    } catch (e) {
+        console.error('Load songs error:', e);
+        list.innerHTML = '<div class="queue-item">Could not load songs.</div>';
+        songQueue = [];
+    }
+}
+
 // VIEW SWITCHER
 document.querySelectorAll("a[data-view]").forEach(link => {
     link.addEventListener("click", () => {
@@ -25,10 +91,8 @@ document.querySelectorAll("a[data-view]").forEach(link => {
 
 // Function to initialize the music player
 function initializePlayer() {
-    // Placeholder for player initialization logic
     console.log("Initializing music player...");
-    // Additional code to set up the player would go here
-
+    loadSongsIntoQueue();
 }
 // Import buttons functionality
 document.getElementById("importMusicBtn").addEventListener("click", function() {
@@ -71,38 +135,95 @@ document.getElementById("playlistFileInput").addEventListener('change', function
 
 
 
-// Function to handle player button clicks
-// Example: Play, Pause, Next, Previous
-// Getting the ID from the html page
+// Player elements
 const audioPlayer = document.getElementById("audioPlayer");
+const playPauseBtn = document.querySelector(".playpause");
+const songDurationBar = document.getElementById("songDurationBar");
+const songDurationFill = document.getElementById("songDurationFill");
+const currentTimeEl = document.getElementById("currentTime");
+const totalTimeEl = document.getElementById("totalTime");
 
-// Function to playpause the button on the UI
-function playPause () {
+function updatePlayPauseButton(playing) {
+    if (playPauseBtn) playPauseBtn.classList.toggle("playing", !!playing);
+}
+
+function updateDurationBar() {
+    const t = audioPlayer.currentTime;
+    const d = audioPlayer.duration;
+    if (songDurationFill) {
+        const pct = d > 0 ? Math.min(100, (t / d) * 100) : 0;
+        songDurationFill.style.width = pct + "%";
+    }
+    if (currentTimeEl) currentTimeEl.textContent = formatTime(t);
+    if (totalTimeEl) totalTimeEl.textContent = formatTime(isFinite(d) ? d : 0);
+}
+
+function playPause() {
+    if (!audioPlayer.src) {
+        if (songQueue.length) loadTrackAtIndex(0);
+        return;
+    }
     if (audioPlayer.paused) {
         audioPlayer.play();
-        console.log("playing: " + audioPlayer.src) ;// Want to add that text where it shows playing plus the Track naming
+        updatePlayPauseButton(true);
     } else {
         audioPlayer.pause();
-        console.log("paused");
+        updatePlayPauseButton(false);
     }
 }
 
-function nextTrack () {
-    audioPlayer.src = 'nexttrack.mp3';
-    audioPlayer.play();
-    console.log("Next track loaded and playing:  " + audioPlayer.src); // Adding something for this string 
+function nextTrack() {
+    if (songQueue.length === 0) return;
+    if (queueIndex < songQueue.length - 1) {
+        loadTrackAtIndex(queueIndex + 1);
+    } else {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        updatePlayPauseButton(false);
+        updateDurationBar();
+    }
 }
 
-function previousTrack () {
-    audioPlayer.src = 'previousTrack.mp3';
-    audioPlayer.play();
-    console.log("Previous track loaded is now playing: " + audioPlayer.src );
+function previousTrack() {
+    if (audioPlayer.currentTime > 3) {
+        audioPlayer.currentTime = 0;
+        updateDurationBar();
+        return;
+    }
+    if (songQueue.length && queueIndex > 0) {
+        loadTrackAtIndex(queueIndex - 1);
+    } else {
+        audioPlayer.currentTime = 0;
+        updateDurationBar();
+    }
 }
 
-//Button Listeners
-document.querySelector(".playpause").addEventListener("click", playPause);
-document.querySelector(".nexttrack").addEventListener("click", nextTrack);
-document.querySelector(".previous").addEventListener("click", previousTrack);
+// Duration bar: update progress while playing
+audioPlayer.addEventListener("timeupdate", updateDurationBar);
+audioPlayer.addEventListener("loadedmetadata", function () {
+    updateDurationBar();
+    updatePlayPauseButton(!audioPlayer.paused);
+});
+audioPlayer.addEventListener("play", function () { updatePlayPauseButton(true); });
+audioPlayer.addEventListener("pause", function () { updatePlayPauseButton(false); });
+audioPlayer.addEventListener("ended", nextTrack);
+
+// Duration bar: click to seek
+if (songDurationBar) {
+    songDurationBar.addEventListener("click", function (e) {
+        if (!audioPlayer.src || !isFinite(audioPlayer.duration)) return;
+        const rect = songDurationBar.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const pct = Math.max(0, Math.min(1, x / rect.width));
+        audioPlayer.currentTime = pct * audioPlayer.duration;
+        updateDurationBar();
+    });
+}
+
+// Button listeners
+if (playPauseBtn) playPauseBtn.addEventListener("click", playPause);
+document.querySelector(".nexttrack")?.addEventListener("click", nextTrack);
+document.querySelector(".previous")?.addEventListener("click", previousTrack);
 
 // Profile View - Load User Information
 const profileView = document.getElementById("Profile-view");

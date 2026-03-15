@@ -21,8 +21,12 @@ include './backend/includes/header.php'; // Corrected path
             <div class="player-section">
                 <div class="album-cover"></div>
 
-                <div class="song-duration">
-                    <div class="song-duration-fill"></div>
+                <div class="duration-wrap">
+                    <span class="duration-time" id="currentTime">0:00</span>
+                    <div class="song-duration" id="songDurationBar" title="Click to seek">
+                        <div class="song-duration-fill" id="songDurationFill"></div>
+                    </div>
+                    <span class="duration-time" id="totalTime">0:00</span>
                 </div>
 
                 <div class="player-control">
@@ -36,10 +40,8 @@ include './backend/includes/header.php'; // Corrected path
             <!-- Queue Section -->
             <div class="queue-section">
                 <h2 class="queue-title">Queue</h2>
-                <div class="queue-list">
-                    <div class="queue-item">Track 1 - Artist Name</div>
-                    <div class="queue-item">Track 2 - Artist Name</div>
-                    <div class="queue-item">Track 3 - Artist Name</div>
+                <div class="queue-list" id="queueList">
+                    <!-- Populated from API when app loads -->
                 </div>
             </div>
 
